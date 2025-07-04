@@ -9,7 +9,6 @@ public class Invoice {
     private double subtotal;
     private double totalWeight;
     private double shippingFees;
-    private double total;
 
     public Invoice(String customerName) {
         this.customerName = customerName;
@@ -18,7 +17,6 @@ public class Invoice {
         this.subtotal = 0;
         this.totalWeight = 0;
         this.shippingFees = 0;
-        this.total = 0;
     }
 
     public void addItem(String product, int quantity, double itemPrice, double itemWeight) {
@@ -29,18 +27,14 @@ public class Invoice {
 
     public void setShippingFees(double shippingFees) {
         this.shippingFees = shippingFees;
-        this.total = subtotal + shippingFees;
     }
 
-    // Getters
     public String getCustomerName() { return customerName; }
     public Date getInvoiceDate() { return invoiceDate; }
     public List<ItemSummary> getItems() { return items; }
     public double getSubtotal() { return subtotal; }
     public double getTotalWeight() { return totalWeight; }
     public double getShippingFees() { return shippingFees; }
-    public double getTotal() { return total; }
-    public boolean hasShippableItems() { return totalWeight > 0; }
 
 
     public static class ItemSummary {

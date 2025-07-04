@@ -25,7 +25,6 @@ public class CheckoutAdministrator {
     }
 
 
-
     private static Invoice createInvoice(String customerUsername , HashMap<Product , Integer> cart) {
         Invoice invoice = new Invoice(customerUsername );
 

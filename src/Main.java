@@ -1,6 +1,20 @@
 import java.util.Calendar;
 import java.util.Date;
 
+/* Product Design discussion:
+    -I was tried to make shipping and expiring properties as interfaces
+     but they should have fields (like expiry data and weight ..),
+     and shouldn't make both of them abstract classes (cause diamond problem in C++ or java/C# prevent the multiple inheritance
+     and to enhance the reusability => finally, I went to make the shipping property as abstract class which is more common and expiring as interface
+* */
+
+/*Notes:
+My assumption of balance for each customer is 20000 egp
+default unit of weight by grams
+
+-I was tried to handle some cases with Single Responsibility Principle
+* */
+
 public class Main {
     public static void main(String[] args) {
         test();
@@ -9,7 +23,7 @@ public class Main {
     public static void test(){
         /// Some Product Samples
         Calendar cal = Calendar.getInstance();
-        TV samsungTV = new TV("Samsung 55", 1300, 10, 4000);
+        TV samsungTV = new TV("Samsung 55", 1300, 25, 4000);
         Mobile iphone = new Mobile("iPhone 15 Pro", 100, 15, 300);
 
         cal.add(Calendar.MONTH, 6);
@@ -29,29 +43,19 @@ public class Main {
 
         Customer cust = new Customer("AnasElwkel", "anshesh039@gmail.com", "anas123", "+201117581803", 20);
         cust.checkout(); //empty cart
+        cust.addProduct(samsungTV, 20);
+        cust.checkout(); //Insufficient balance
 
         cust.addProduct(samsungTV, 1);
         cust.addProduct(ulker, 2);
         cust.checkout();
+
     }
 
     public static void testShoppingSystem() {
         System.out.println("\n===== Testing Shopping System =====\n");
 
 
-        // Test case 1: Empty cart checkout
-//        System.out.println("\n----- Test Case 1: Empty Cart -----\n");
-//        Customer customer1 = new Customer("john_doe", "john@example.com", "password123", "555-1234", 30);
-//        // Try to checkout with empty cart
-//        CheckoutAdministrator.checkout(customer1);
-
-        // Test case 2: Expired items in cart
-        System.out.println("\n----- Test Case 2: Expired Items -----\n");
-        Customer customer2 = new Customer("jane_smith", "jane@example.com", "pass456", "555-5678", 25);
-//        customer2.addProduct(samsungTV, 1);  // Valid product
-//        customer2.addProduct(expiredBiscuits, 2);  // Expired product
-        // Try checkout with expired items
-        CheckoutAdministrator.checkout(customer2);
 
         // Test case 3: Insufficient balance
         System.out.println("\n----- Test Case 3: Insufficient Balance -----\n");

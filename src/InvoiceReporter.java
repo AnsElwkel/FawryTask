@@ -7,7 +7,8 @@ public class InvoiceReporter {
 
         System.out.println("================ Shipment Notice =================");
         for(var item : invoice.getItems())
-            System.out.println(item.getQuantity()+"x " + item.getProductName() + "\t\t" +  item.getItemWeight());
+            System.out.println(item.getQuantity()+"x " + item.getProductName() + "\t\t" +  item.getItemWeight() + "g");
+        System.out.println("Total Package Weight " + invoice.getTotalWeight()/1000 + "kg" );
 
         System.out.print("\n");
 
